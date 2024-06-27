@@ -37,4 +37,36 @@ const GameList = () => {
       <h2>Game List</h2>
       <List>
         {games.map(game => (
-          <
+          <ListItem key={game._id}>
+            <ListItemText primary={game.title} secondary={`${game.genre} - ${game.releaseDate}`} />
+            <Button onClick={() => handleUpdateGame(game._id)}>Update</Button>
+            <Button onClick={() => handleDeleteGame(game._id)}>Delete</Button>
+          </ListItem>
+        ))}
+      </List>
+      <h2>Create New Game</h2>
+      <TextField
+        label="Title"
+        value={newGame.title}
+        onChange={e => setNewGame({ ...newGame, title: e.target.value })}
+      />
+      <TextField
+        label="Genre"
+        value={newGame.genre}
+        onChange={e => setNewGame({ ...newGame, genre: e.target.value })}
+      />
+      <TextField
+        label="Release Date"
+        type="date"
+        value={newGame.releaseDate}
+        onChange={e => setNewGame({ ...newGame, releaseDate: e.target.value })}
+        InputLabelProps={{
+          shrink: true,
+        }}
+      />
+      <Button onClick={handleCreateGame}>Create Game</Button>
+    </div>
+  );
+};
+
+export default GameList;
