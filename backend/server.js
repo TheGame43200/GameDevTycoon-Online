@@ -1,6 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');  // Ajout de l'importation CORS
 const userRoutes = require('./routes/userRoutes');
 const employeeRoutes = require('./routes/employeeRoutes');
 const reviewRoutes = require('./routes/reviewRoutes');
@@ -11,7 +12,9 @@ const helmet = require('helmet');
 const app = express();
 const port = process.env.PORT || 5000;
 
-// Configurer le middleware de sécurité
+// Activer CORS
+app.use(cors());
+
 app.use(helmet());
 
 // Configurer le limiteur de taux

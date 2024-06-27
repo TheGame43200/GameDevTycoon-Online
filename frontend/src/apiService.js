@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:5000/api';
+const API_URL = 'http://192.168.1.61:5000/api';
 
 export const fetchGames = async () => {
     const response = await axios.get(`${API_URL}/games`, {
@@ -37,4 +37,32 @@ export const deleteGame = async (id) => {
             'Authorization': `Bearer ${localStorage.getItem('token')}`
         }
     });
+};
+
+export const getEmployees = async () => {
+    const response = await axios.get(`${API_URL}/employees`, {
+        headers: {
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
+        }
+    });
+    return response.data;
+};
+
+export const addEmployee = async (employee) => {
+    const response = await axios.post(`${API_URL}/employees`, employee, {
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
+        }
+    });
+    return response.data;
+};
+
+export const getGames = async () => {
+    const response = await axios.get(`${API_URL}/games`, {
+        headers: {
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
+        }
+    });
+    return response.data;
 };

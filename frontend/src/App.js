@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getEmployees, addEmployee, getGames, addGame } from './apiService';
+import { getEmployees, addEmployee, getGames, createGame } from './apiService';
 import ReviewForm from './components/ReviewForm';
 
 function App() {
@@ -24,7 +24,7 @@ function App() {
     };
 
     const handleAddGame = async () => {
-        const addedGame = await addGame(newGame);
+        const addedGame = await createGame(newGame);
         setGames([...games, addedGame]);
     };
 
