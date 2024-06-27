@@ -3,6 +3,7 @@ const router = express.Router();
 const User = require('../models/User');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const authMiddleware = require('../middleware/authMiddleware');
 
 // Inscription
 router.post('/register', async (req, res) => {
@@ -47,12 +48,25 @@ router.post('/login', async (req, res) => {
         }
 
         // Créez un token
-        const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' }); // Utilisation de process.env.JWT_SECRET
+        const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
 
         res.json({ token });
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
+});
+
+// Enregistrer un nouvel admin (protégé)
+router.post('/register-admin', authMiddleware, async (req, res) => {
+  const { name, email, password } = req.body;
+  try {
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const user = new User({ name, email, password: hashedPassword, role: 'admin' });
+    await user.save();
+    res.status(201).send(user);
+  } catch (error) {
+    res.status(400).send(error.message);
+  }
 });
 
 module.exports = router;

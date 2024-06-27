@@ -1,14 +1,16 @@
 require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
-const cors = require('cors');  // Ajout de l'importation CORS
+const cors = require('cors');
 const userRoutes = require('./routes/userRoutes');
 const employeeRoutes = require('./routes/employeeRoutes');
 const reviewRoutes = require('./routes/reviewRoutes');
 const authRoutes = require('./routes/authRoutes');
-const gameRoutes = require('./routes/games');  // Ajout de la route des jeux
+const gameRoutes = require('./routes/games');
+const adminRoutes = require('./routes/adminRoutes');
 const rateLimit = require('express-rate-limit');
 const helmet = require('helmet');
+const authMiddleware = require('./middleware/authMiddleware');
 const app = express();
 const port = process.env.PORT || 5000;
 
@@ -44,7 +46,8 @@ app.use('/api/users', userRoutes);
 app.use('/api/employees', employeeRoutes);
 app.use('/api/reviews', reviewRoutes);
 app.use('/api/auth', authRoutes);
-app.use('/api/games', gameRoutes);  // Utiliser la route des jeux
+app.use('/api/games', gameRoutes);
+app.use('/api/admin', authMiddleware, adminRoutes);
 
 // Point de terminaison de test
 app.get('/api/test', (req, res) => {

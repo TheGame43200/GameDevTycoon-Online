@@ -4,7 +4,7 @@ import GameList from './components/GameList';
 import Login from './components/Login';
 import Register from './components/Register';
 import AdminPage from './components/AdminPage';
-import RegisterAdmin from './components/RegisterAdmin';  // Ajout du composant RegisterAdmin
+import RegisterAdmin from './components/RegisterAdmin';
 import { getEmployees, addEmployee, getGames, createGame } from './apiService';
 import ReviewForm from './components/ReviewForm';
 
@@ -41,7 +41,7 @@ function App() {
         <Switch>
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
-          <Route path="/register-admin" component={RegisterAdmin} />  {/* Ajout de la route RegisterAdmin */}
+          <Route path="/register-admin" component={RegisterAdmin} /> {/* Ajout de la route RegisterAdmin */}
           <Route path="/admin" component={AdminPage} />
           <Route path="/" component={GameList} />
         </Switch>
