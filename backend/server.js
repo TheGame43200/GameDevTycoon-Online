@@ -2,21 +2,23 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const rateLimit = require('express-rate-limit');
+const helmet = require('helmet');
 const userRoutes = require('./routes/userRoutes');
 const employeeRoutes = require('./routes/employeeRoutes');
 const reviewRoutes = require('./routes/reviewRoutes');
 const authRoutes = require('./routes/authRoutes');
 const gameRoutes = require('./routes/games');
 const adminRoutes = require('./routes/adminRoutes');
-const rateLimit = require('express-rate-limit');
-const helmet = require('helmet');
-const authMiddleware = require('./middleware/authMiddleware');
+const authMiddleware = require('./middlewares/authMiddleware');
+
 const app = express();
 const port = process.env.PORT || 5000;
 
 // Activer CORS
 app.use(cors());
 
+// Activer Helmet pour la sécurité
 app.use(helmet());
 
 // Configurer le limiteur de taux
@@ -28,7 +30,7 @@ const limiter = rateLimit({
 app.use(limiter);
 
 // URI de connexion MongoDB
-const mongoUri = process.env.MONGO_URI;
+const mongoUri = process.env.MONGO_URI || 'mongodb://192.168.1.61:27017/gamedevtycoon';
 
 // Connexion à MongoDB
 mongoose.connect(mongoUri, {
@@ -47,7 +49,7 @@ app.use('/api/employees', employeeRoutes);
 app.use('/api/reviews', reviewRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/games', gameRoutes);
-app.use('/api/admin', authMiddleware, adminRoutes);
+app.use('/api/admin', authMiddleware.isAuthenticated, authMiddleware.isAdmin, adminRoutes);
 
 // Point de terminaison de test
 app.get('/api/test', (req, res) => {

@@ -1,30 +1,15 @@
 const express = require('express');
 const router = express.Router();
-const Name = require('../models/Name');
-const Comment = require('../models/Comment');
+const { addFirstName, addLastName, addComment } = require('../controllers/adminController');
+const { isAuthenticated, isAdmin } = require('../middlewares/authMiddleware');
 
-// Ajouter un prénom et un nom
-router.post('/add-name', async (req, res) => {
-  const { firstName, lastName } = req.body;
-  const name = new Name({ firstName, lastName });
-  try {
-    await name.save();
-    res.status(201).send(name);
-  } catch (error) {
-    res.status(400).send(error.message);
-  }
-});
+// Route pour ajouter un prénom
+router.post('/add-firstname', isAuthenticated, isAdmin, addFirstName);
 
-// Ajouter un commentaire
-router.post('/add-comment', async (req, res) => {
-  const { text, rating } = req.body;
-  const comment = new Comment({ text, rating });
-  try {
-    await comment.save();
-    res.status(201).send(comment);
-  } catch (error) {
-    res.status(400).send(error.message);
-  }
-});
+// Route pour ajouter un nom de famille
+router.post('/add-lastname', isAuthenticated, isAdmin, addLastName);
+
+// Route pour ajouter un commentaire
+router.post('/add-comment', isAuthenticated, isAdmin, addComment);
 
 module.exports = router;
