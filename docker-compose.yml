@@ -1,10 +1,8 @@
-version: '3.8'
-
+version: '3'
 services:
   frontend:
     build:
-      context: .
-      dockerfile: Dockerfile.frontend
+      context: ./frontend
     container_name: gto_frontend
     ports:
       - "3000:3000"
@@ -13,8 +11,7 @@ services:
 
   backend:
     build:
-      context: .
-      dockerfile: Dockerfile.backend
+      context: ./backend
     container_name: gto_backend
     ports:
       - "5000:5000"
@@ -24,7 +21,7 @@ services:
       - mongo
 
   mongo:
-    image: mongo:latest
+    image: mongo
     container_name: gto_mongo
     ports:
       - "27017:27017"
@@ -38,11 +35,11 @@ services:
       - "81:81"
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf
-    networks:
-      - gto_network
     depends_on:
       - frontend
       - backend
+    networks:
+      - gto_network
 
 networks:
   gto_network:
