@@ -1,0 +1,105 @@
+.office-upgrade-menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.office-upgrade-menu {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  position: relative;
+  width: 90%;
+  max-width: 800px;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #b5bb1a;
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.levels-navigation {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.levels-container-wrapper {
+  width: calc(100% - 100px);
+  overflow: hidden;
+}
+
+.levels-container {
+  display: flex;
+  transition: transform 0.3s ease;
+  width: 100%;
+}
+
+.level-card {
+  flex: 1;
+  margin: 0 10px;
+  background-color: #f0f0f0;
+  border-radius: 5px;
+  padding: 15px;
+  text-align: center;
+  min-width: 0;
+}
+
+.level-card.current {
+  background-color: #e0e0e0;
+  border: 2px solid #b5bb1a;
+}
+
+.level-card h3 {
+  margin-top: 0;
+}
+
+.level-card button {
+  margin-top: 10px;
+  padding: 5px 10px;
+  background-color: #b5bb1a;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.level-card button.purchased {
+  background-color: #808080;
+  cursor: not-allowed;
+}
+
+.nav-button {
+  background-color: #b5bb1a;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 18px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.nav-button.disabled {
+  background-color: #cccccc;
+  color: #666666;
+  cursor: not-allowed;
+}

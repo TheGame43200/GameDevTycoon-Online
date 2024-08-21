@@ -1,0 +1,163 @@
+.dashboard {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: 'Roboto', Arial, sans-serif;
+    color: #333;
+    background-color: #f0f0f0;
+  }
+  
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  h1, h2 {
+    color: #2c3e50;
+    margin-bottom: 15px;
+  }
+  
+  .notifications {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .notification {
+    padding: 10px;
+    margin-bottom: 5px;
+    border-radius: 4px;
+    font-size: 0.9em;
+  }
+  
+  .notification.success {
+    background-color: #d4edda;
+    color: #155724;
+  }
+  
+  .notification.info {
+    background-color: #d1ecf1;
+    color: #0c5460;
+  }
+  
+  main {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+  }
+  
+  section {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  }
+  
+  .company-overview .stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+  }
+  
+  .stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    background-color: #e9ecef;
+    border-radius: 4px;
+  }
+  
+  .stat-label {
+    font-size: 0.9em;
+    color: #6c757d;
+  }
+  
+  .stat-value {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #343a40;
+  }
+  
+  .current-projects .project {
+    margin-bottom: 15px;
+  }
+  
+  .project-name {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+  }
+  
+  .project-details {
+    display: flex;
+    align-items: center;
+  }
+  
+  progress {
+    flex-grow: 1;
+    height: 10px;
+    margin-right: 10px;
+  }
+  
+  .project-progress, .project-team {
+    font-size: 0.9em;
+    color: #6c757d;
+    margin-left: 10px;
+  }
+  
+  .recent-games table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .recent-games th, .recent-games td {
+    text-align: left;
+    padding: 10px;
+    border-bottom: 1px solid #dee2e6;
+  }
+  
+  .recent-games th {
+    background-color: #e9ecef;
+    font-weight: bold;
+  }
+  
+  .revenue-chart {
+    grid-column: 1 / -1;
+  }
+  
+  .quick-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .quick-actions button {
+    flex: 1;
+    min-width: 150px;
+    background-color: #007bff;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .quick-actions button:hover {
+    background-color: #0056b3;
+  }
+  
+  @media (max-width: 768px) {
+    main {
+      grid-template-columns: 1fr;
+    }
+  
+    .quick-actions button {
+      width: 100%;
+    }
+  }
